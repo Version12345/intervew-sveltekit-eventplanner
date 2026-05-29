@@ -1,9 +1,8 @@
-import { fetchAllEvents } from '$lib/server/remote-events';
+import { fetchAllEvents } from '$lib/server/cached-events';
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async () => {
-    const loadedEvents = await fetchAllEvents();
+export const load: PageServerLoad = () => {
     return {
-        events: loadedEvents
-    }
+        events: fetchAllEvents()
+    };
 };
